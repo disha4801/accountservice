@@ -27,7 +27,7 @@ import jakarta.validation.Valid;
 
 //@CrossOrigin("*")
 @RestController
-@RequestMapping("/api/customer")
+@RequestMapping("customer")
 public class CustomerController {
 	
 	@Autowired
@@ -58,7 +58,7 @@ public class CustomerController {
 
 	@GetMapping("/{customerId}")
 	public ResponseEntity<?> getCustomerById(@PathVariable("customerId")int customerId)throws IdNotFoundException{
-		
+		System.out.println(customerId);
 		Optional<Customer>optional = customerService.getCustomerById(customerId);
 		if(optional.isPresent()) {
 			return ResponseEntity.ok(optional.get());

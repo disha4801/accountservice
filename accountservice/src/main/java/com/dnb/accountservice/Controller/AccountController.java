@@ -28,7 +28,7 @@ import com.dnb.accountservice.utils.RequestToEntityMapper;
 import jakarta.validation.Valid;
 @RefreshScope
 @RestController
-@RequestMapping("/api/account")
+@RequestMapping("account")
 public class AccountController {
 	
 	@Value("${customProperty.test}")

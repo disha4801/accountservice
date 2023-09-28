@@ -20,46 +20,52 @@ import com.dnb.accountservice.exceptions.InvalidDateException;
 import com.dnb.accountservice.exceptions.InvalidNameException;
 import com.dnb.accountservice.repo.AccountRepository;
 
-
 @Service("accountServiceImpl")
 public class AccountServiceImpl implements AccountService {
 
 	@Autowired
 	private AccountRepository accountRepository;
+//	@Autowired
+//	private ApiClient apiClient;
 	@Autowired
 	RestTemplate restTemplate;
-	
-	
 	@Value("${api.customer}")
 	private String URL;
 //	@Autowired
 //	private CustomerRepository customerRepository;
 
 	@Override
-	public Account createAccount(Account account) throws IdNotFoundException, InvalidNameException, InvalidContactNumberException, InvalidAddressException {
-		System.out.println("customer id"+account.getCustomerId());
+	public Account createAccount(Account account)
+			throws IdNotFoundException, InvalidNameException, InvalidContactNumberException, InvalidAddressException {
+		System.out.println("customer id" + account.getCustomerId());
 		System.out.println(URL);
-//		Optional<Customer> customer=customerRepository.findById(account.getCustomer().getCustomerId());
+		//Optional<Customer> customer=customerRepository.findById(account.getCustomer().getCustomerId());
 		try {
-		ResponseEntity<Customer> responseEntity = restTemplate.getForEntity(URL+"/"+account.getCustomerId(), Customer.class);
+			ResponseEntity<Customer> responseEntity = restTemplate.getForEntity(URL + "/" + account.getCustomerId(),
+					Customer.class);
 // 		if(customer.isPresent()) {
 // 			account.setCustomer(customer.get());
 			System.out.println(responseEntity.getBody());
-			return accountRepository.save(account);
-	
-	}
-		catch(Exception e) {
+//		Optional<Customer>customer = apiClient.getCustomerById(123);
+//		try{
+//			
+			//if(customer.isPresent()) {
+				return accountRepository.save(account);
+			//}	
+
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		return null;
-		}
+}
+//	}
 //	else
 //			customer.orElseThrow(()->new IdNotFoundException("customer id Not valid"));
 //		return null;
-//}
+
 
 	@Override
-	public Optional<Account> getAccountById(String accountId){// throws InvalidNameException, InvalidDateException,
+	public Optional<Account> getAccountById(String accountId) {// throws InvalidNameException, InvalidDateException,
 //			InvalidAccountIdException, InvalidAccountTypeException, InvalidBalanceException,
 //			InvalidContactNumberException, InvalidAddressException, InvalidAccountStatusException {
 		// TODO Auto-generated method stub
@@ -68,8 +74,7 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public Iterable<Account> getAllAccounts() throws InvalidNameException, InvalidDateException,
-			InvalidAccountIdException, 
-			InvalidContactNumberException, InvalidAddressException{
+			InvalidAccountIdException, InvalidContactNumberException, InvalidAddressException {
 		// TODO Auto-generated method stub
 		return accountRepository.findAll();
 	}
@@ -91,8 +96,10 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public boolean accountExistsById(String accountId) {
 		// TODO Auto-generated method stub
-		if (accountRepository.existsById(accountId)) return true;
-		else return false;
+		if (accountRepository.existsById(accountId))
+			return true;
+		else
+			return false;
 	}
 
 //	@Override
@@ -106,8 +113,7 @@ public class AccountServiceImpl implements AccountService {
 		// TODO Auto-generated method stub
 		return accountRepository.findByContactNumber(contactNumber);
 	}
-	
-}
 
+}
 
 

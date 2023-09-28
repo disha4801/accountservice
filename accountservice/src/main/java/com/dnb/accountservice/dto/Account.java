@@ -1,6 +1,7 @@
 package com.dnb.accountservice.dto;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -17,6 +18,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @Data
@@ -67,4 +69,5 @@ public class Account {
 //	 @JsonIgnoreProperties("accountList")
 //	//@JsonIgnore
 	private int customerId;
+	
 }

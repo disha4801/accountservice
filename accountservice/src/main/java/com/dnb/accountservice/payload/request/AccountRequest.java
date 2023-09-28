@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.dnb.accountservice.dto.Customer;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;

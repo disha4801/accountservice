@@ -26,7 +26,7 @@ public class Customer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int customerId;
+	private int  customerId;
 	private String customerName;
 	private String customerContactNumber;
 	private String customerAddress;
