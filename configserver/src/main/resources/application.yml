@@ -1,4 +1,4 @@
-xspring:
+spring:
   application:
     name: config-server
   cloud:
